@@ -1,0 +1,68 @@
+body {
+    background-color: #FFF0D1;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background-color: #7e572bcc;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    max-width: 80px;
+    height: auto;
+    border-radius: 50%;
+}
+
+.header-nav a {
+    text-decoration: none;
+    color: white;
+    margin: 0 10px;
+}
+
+.auth-nav a {
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Container gambar di atas deskripsi */
+.image-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0; /* Spasi antara gambar dan konten di bawahnya */
+}
+
+.image-container img {
+    max-width: 200px;
+    height: auto;
+    border-radius: 10px; /* Opsional untuk memberikan efek rounded */
+}
+
+.description {
+    padding: 20px;
+    font-size: 18px;
+    color: #654520;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 768px) {
+    .image-container {
+        flex-direction: column;
+    }
+
+    .image-container img {
+        max-width: 100%;
+    }
+}
