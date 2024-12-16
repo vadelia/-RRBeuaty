@@ -24,8 +24,8 @@
                 <a target="_blank" href="https://web.whatsapp.com/">Contact</a>
             </nav>
             <nav class="auth-nav">
-                <a href="login_page.html" class="login-btn">Login</a>
-                <a href="register_page.html" class="signup-btn">Sign Up</a>
+                <a href="login_page.php" class="login-btn">Login</a>
+                <a href="register.php" class="signup-btn">Sign Up</a>
             </nav>
         </div>
     </header>
