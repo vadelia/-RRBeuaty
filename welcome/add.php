@@ -36,9 +36,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Data Member</title>
     <style>
+        /* Menentukan gaya dasar body dengan gradien warna menarik */
         body {
             font-family: Arial, sans-serif;
-            background-color: #FFF0D1;
+            background: linear-gradient(135deg, #262626, #ffb398);
             margin: 0;
             padding: 0;
             display: flex;
@@ -47,64 +48,96 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             height: 100vh;
         }
 
+        /* Membuat wadah form dengan shadow dan border-radius */
         .form-container {
             background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            padding: 30px;
             width: 400px;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
+        /* Memberikan animasi untuk tampilan fade-in */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Styling untuk heading */
         h1 {
             text-align: center;
             font-size: 24px;
             margin-bottom: 20px;
-            color : #7e572b;
+            color: #262626;
         }
 
+        /* Mengatur grup form untuk tata letak rapi */
         .form-group {
             display: flex;
             flex-direction: column;
             margin-bottom: 15px;
         }
 
+        /* Styling label */
         .form-group label {
             font-weight: bold;
             margin-bottom: 5px;
         }
 
+        /* Styling input dan textarea */
         .form-group input, .form-group textarea {
             padding: 10px;
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 16px;
+            transition: all 0.3s ease;
         }
 
+        /* Memberikan efek saat fokus pada input/textarea */
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #7e57c2;
+            box-shadow: 0 0 5px rgba(126, 87, 194, 0.5);
+            outline: none;
+        }
+
+        /* Styling tombol submit */
         form button {
             width: 100%;
             padding: 10px;
-            background-color: #007BFF;
+            background-color: #ffb398;
             border: none;
             border-radius: 5px;
             color: #fff;
             font-size: 16px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
+        /* Memberikan efek hover pada tombol */
         form button:hover {
-            background-color: #0056b3;
+            background-color: #5e35b1;
         }
 
+        /* Styling untuk link kembali */
         a {
             text-decoration: none;
             display: block;
             text-align: center;
             margin-top: 15px;
-            color: #007BFF;
+            color: #7e57c2;
+            transition: color 0.3s ease;
         }
 
+        /* Memberikan efek hover pada link */
         a:hover {
-            color: #0056b3;
+            color: #5e35b1;
         }
     </style>
     <script>
@@ -144,33 +177,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="form-container">
         <h1>Tambah Data Member</h1>
         <form method="POST" onsubmit="return validateForm()">
+            <!-- Input untuk nomor member -->
             <div class="form-group">
                 <label for="no_member">Nomor Member:</label>
                 <input type="text" name="no_member" id="no_member" required>
             </div>
 
+            <!-- Input untuk nama -->
             <div class="form-group">
                 <label for="nama">Nama:</label>
                 <input type="text" name="nama" id="nama" required>
             </div>
 
+            <!-- Input untuk email -->
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" name="email" id="email" required>
             </div>
 
+            <!-- Input untuk nomor telepon -->
             <div class="form-group">
                 <label for="phone">Telepon:</label>
                 <input type="text" name="phone" id="phone" required>
             </div>
 
+            <!-- Input untuk alamat -->
             <div class="form-group">
                 <label for="alamat">Alamat:</label>
                 <textarea name="alamat" id="alamat" rows="3" required></textarea>
             </div>
 
+            <!-- Tombol submit -->
             <button type="submit">Simpan</button>
         </form>
+
+        <!-- Link kembali -->
         <a href="datam.php">Kembali</a>
     </div>
 </body>

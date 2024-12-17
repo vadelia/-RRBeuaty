@@ -64,7 +64,7 @@ $conn->close();
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #FFF0D1; 
+            background: linear-gradient(135deg, #262626, #ffb398);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -73,7 +73,7 @@ $conn->close();
         }
 
         .container {
-            background-color: #FFF0D1; 
+            background-color: #ffb398; 
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 30px;
             border-radius: 8px;
@@ -132,7 +132,7 @@ $conn->close();
         }
 
         .links a {
-            color: #3498db;
+            color: #262626;
             text-decoration: none;
         }
 

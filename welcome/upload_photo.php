@@ -1,82 +1,51 @@
 <?php
 session_start();
+require 'db_config.php';
 
-// Cek apakah pengguna sudah login
-if (!isset($_SESSION['username'])) {
-    header("Location: login_page.php");
-    exit();
-}
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['profile_image'])) {
+    $user_id = $_SESSION['user_id'];
+    $target_dir = "images/";
+    $image_name = basename($_FILES["profile_image"]["name"]);
+    $target_file = $target_dir . uniqid() . "_" . $image_name;
+    $upload_ok = 1;
+    $image_file_type = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-// Cek apakah pengguna memiliki role admin
-if ($_SESSION['role'] !== 'Admin') {
-    header("Location: user_dashboard.php");
-    exit();
+    // Validasi file gambar
+    $check = getimagesize($_FILES["profile_image"]["tmp_name"]);
+    if ($check === false) {
+        echo "File is not an image.";
+        $upload_ok = 0;
+    }
+
+    // Batasi tipe file
+    if (!in_array($image_file_type, ["jpg", "jpeg", "png", "gif"])) {
+        echo "Only JPG, JPEG, PNG & GIF files are allowed.";
+        $upload_ok = 0;
+    }
+
+    // Batasi ukuran file (contoh: maksimum 2MB)
+    if ($_FILES["profile_image"]["size"] > 2 * 1024 * 1024) {
+        echo "File size exceeds the maximum limit of 2MB.";
+        $upload_ok = 0;
+    }
+
+    if ($upload_ok === 1) {
+        // Pindahkan file
+        if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $target_file)) {
+            // Update database
+            $sql = "UPDATE users SET profile_image = ? WHERE user_id = ?";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("si", $target_file, $user_id);
+            if ($stmt->execute()) {
+                $_SESSION['profile_image'] = $target_file;
+                header("Location: user_dashboard.php");
+                exit();
+            } else {
+                echo "Database error: " . $conn->error;
+            }
+        } else {
+            echo "Error uploading the file.";
+        }
+    }
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/dashboard.css">
-    <title>Dashboard</title>
-</head>
-<body>
-    <header>
-        <a href="logout.php" class="logout-button">Keluar</a>
-        <h1>Manajemen Pegawai RR Beauty</h1>
-    </header>
-    
-    <div class="dashboard-container">
-        <div class="profile-section">
-            <div class="profile-info">
-                <!-- Tampilkan Foto Profil -->
-                <img src="<?php echo isset($_SESSION['photo']) ? 'uploads/' . $_SESSION['photo'] : 'source/profil2.jpg'; ?>" alt="Profile" class="profile-pic">
-                <h2><?php echo htmlspecialchars($_SESSION['username']); ?></h2>
-                <p>Administrator</p>
-                
-                <!-- Form untuk Edit Foto -->
-                <form action="upload_photo.php" method="post" enctype="multipart/form-data">
-                    <label for="profile_photo">Ganti Foto:</label>
-                    <input type="file" name="profile_photo" id="profile_photo" accept="image/*" required>
-                    <button type="submit">Unggah</button>
-                </form>
-            </div>
-            <div class="stats">
-                <div class="stat-card">
-                    <h3>Average Score</h3>
-                    <p>72.5</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Attendance</h3>
-                    <p>80%</p>
-                </div>
-                <div class="stat-card">
-                    <h3>Grades</h3>
-                    <p>A</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="main-section">
-            <h1>Hallo! <?php echo htmlspecialchars($_SESSION['username']); ?></h1>
-            <p>Semoga harimu menyenangkan.</p>
-            <div class="cards">
-                <div class="card">
-                    <h3>Data Member</h3>
-                    <p>Lihat data lengkap semua Member.</p>
-                    <a href="datam.php" class="button">Lihat</a>
-                </div>
-                <div class="card">
-                    <h3>Data Pegawai</h3>
-                    <p>Lihat Pegawai yang tersedia.</p>
-                    <a href="dataj.php" class="button">Lihat</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <footer>
-        <p>&copy; RR Beauty 2024</p>
-    </footer>
-</body>
-</html>

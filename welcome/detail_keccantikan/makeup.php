@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman dengan Gambar</title>
-    <link rel="stylesheet" href="detail_css/rambut.css">
+    <link rel="stylesheet" href="detail_css/makeup.css">
 </head>
 <body>
 
@@ -14,13 +14,13 @@
         <img src="../source/rr_logo2.png" alt="Logo">
     </div>
     <nav class="header-nav">
-        <a href="../home_page.html">Home</a>
+        <a href="../home_page.php">Home</a>
         <a href="#services">Services</a>
         <a href="#contact">Contact</a>
     </nav>
     <div class="auth-nav">
-        <a href="../login_page.html">Login</a>
-        <a href="../register_page.html">Register</a>
+        <a href="../login_page.php">Login</a>
+        <a href="../register.php">Register</a>
     </div>
 </header>
 
@@ -41,6 +41,5 @@
         memberikan tampilan yang sesuai dengan keinginan dan kebutuhan acara, serta memastikan Anda tampil percaya diri di setiap kesempatan.
     </p>
 </div>
-
 </body>
 </html>

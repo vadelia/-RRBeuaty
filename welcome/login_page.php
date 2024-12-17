@@ -196,9 +196,13 @@ $conn->close();
         .remember-me {
             display: flex;
             align-items: center;
-            font-size: 14px;
-            color: #333;
             gap: 10px;
+        }
+
+        .remember-me input {
+            margin: 0;
+            width: 16px;
+            height: 16px;
         }
 
         .remember-me label {
@@ -241,10 +245,9 @@ $conn->close();
                 <option value="Admin">Admin</option>
             </select>
         </div>
-        <div class="form-group remember-me">
-            <label>
-                <input type="checkbox" name="remember"> Remember me
-            </label>
+            <div class="form-group remember-me">
+            <input type="checkbox" id="remember" name="remember">
+            <label for="remember">Remember me</label>
         </div>
         <button type="submit">Login</button>
     </form>

@@ -1,5 +1,5 @@
 body {
-    background-color: #FFF0D1;
+    background: linear-gradient(135deg, #262626, #ffb398);
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -7,7 +7,7 @@ body {
 }
 
 header {
-    background-color: #7e572bcc;
+    background-color: #262626;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between;
@@ -53,7 +53,7 @@ header {
 .description {
     padding: 20px;
     font-size: 18px;
-    color: #654520;
+    color: #ffffff;
 }
 
 /* Responsif untuk layar kecil */

@@ -24,7 +24,7 @@ header h1 {
     top: 20px;
     right: 20px;
     background-color: #ffffff;
-    color: #654520;
+    color: #262626;
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
@@ -72,7 +72,7 @@ header h1 {
 }
 
 .stat-card {
-    background-color: #654520;
+    background-color: #262626;
     color: white;
     padding: 10px;
     border-radius: 10px;
