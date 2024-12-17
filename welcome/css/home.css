@@ -6,17 +6,17 @@
 }
 
 body {
-    background-color: #FFF0D1;
+    background: linear-gradient(135deg, #262626, #ffb398);
 }
 
 header {
-    background-color: #7e572bcc;
+    background-color: #262626;
     padding: 10px 20px;
     display: flex;
     justify-content: space-between; /* Memisahkan logo dan navigasi */
     align-items: center;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    color: #654520;
+    color: #ffb398;
 }
 
 .logo img {
@@ -40,7 +40,7 @@ header {
 
 .header-nav a:hover {
     text-decoration: underline;
-    color: #654520; /* Ubah warna saat hover */
+    color: #ffb398; /* Ubah warna saat hover */
 }
 
 .auth-nav {
@@ -50,7 +50,7 @@ header {
     position: absolute; /* Mengatur posisi auth-nav */
     right: 30px; /* Jarak dari kanan */
     top: 10px; /* Jarak dari atas header */
-    color: #654520;
+    color: #ffb398;
 }
 
 .auth-nav a {
@@ -65,7 +65,7 @@ header {
 }
 
 .auth-nav a:hover {
-    background-color: #654520;
+    background-color: #ffb398;
     color: white;
 }
 
@@ -75,6 +75,7 @@ header {
     gap: 20px; /* Tambahkan spasi antar gambar */
     padding: 50px;
     flex-wrap: wrap; /* Membuat layout responsif */
+    
 }
 
 .left-section img, .right-section img {
@@ -98,9 +99,9 @@ header {
     padding: 20px 0; /* Padding atas dan bawah */
     overflow-x: auto; /* Mengizinkan scroll horizontal */
     white-space: nowrap; /* Mencegah pembungkusan gambar */
-    background-color: #654520cc;
+    background:  #262626;
     text-align: center;
-    color: #FFF0D1;
+    color: #ffffff;
     text-spacing-trim: 20px;
     line-height: 1.5; 
 }
@@ -128,6 +129,7 @@ header {
     position: relative; /* Agar teks berada di atas gambar */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Tambahkan transisi halus */
     margin: 50px, 100px;
+    
 }
 
 .menu-item img {
@@ -153,7 +155,7 @@ header {
 .menu-item a {
     margin-top: 8px;
     text-align: center;
-    color: #654520;
+    color: #ffffff;
     visibility: hidden; /* Sembunyikan teks secara default */
     opacity: 0; /* Set opacity menjadi 0 untuk efek halus */
     transition: opacity 0.3s ease, visibility 0.3s ease; /* Tambahkan transisi untuk efek halus */
@@ -164,6 +166,8 @@ header {
     background-color: rgba(255, 255, 255, 0.7); /* Warna latar belakang semi-transparan */
     padding: 5px;
     border-radius: 5px;
+    background: linear-gradient(135deg, #262626, #ffb398);
+
 }
 
 .menu-item:hover a {
@@ -189,13 +193,13 @@ header {
 }
 
 .description h2 {
-    color: #654520; /* Warna judul */
+    color: #ffb398; /* Warna judul */
     margin-bottom: 10px; /* Jarak bawah untuk judul */
 }
 
 .description p {
     line-height: 1.6; /* Tambahkan jarak antar baris untuk keterbacaan */
-    color: #654520; /* Warna teks */
+    color: #fcfcfc; /* Warna teks */
 }
 
 /* Styling untuk gambar */
@@ -228,7 +232,7 @@ header {
 }
 
 footer {
-    background-color: #654520;
+    background: #262626;
     color: white;
     padding: 20px;
     text-align: center;

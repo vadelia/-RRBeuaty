@@ -1,3 +1,40 @@
+<?php
+$host = "localhost";
+$user = "root"; // Sesuaikan dengan user MySQL Anda
+$pass = "";
+$db   = "uas_web";
+
+$conn = new mysqli($host, $user, $pass, $db);
+
+if ($conn->connect_error) {
+    die("Koneksi gagal: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $nama = $_POST['nama'];
+    $jk = $_POST['jk'];
+    $tanggal = $_POST['tanggal'];
+    $jabatan = $_POST['jabatan'];
+
+    // Proses Upload File
+    $foto = $_FILES['foto']['name'];
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($foto);
+    move_uploaded_file($_FILES['foto']['tmp_name'], $target_file);
+
+    // Insert data ke database
+    $sql = "INSERT INTO member_rr_beauty (foto, nama, jenis_kelamin, tanggal, jabatan)
+            VALUES ('$foto', '$nama', '$jk', '$tanggal', '$jabatan')";
+
+    if ($conn->query($sql) === TRUE) {
+        echo "Data berhasil ditambahkan!";
+    } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $conn->close();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

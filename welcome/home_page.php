@@ -7,6 +7,7 @@
     <title>RR BEUATY</title>
     <link rel="icon" href="source/rr_logo.jpg" type="image/png">
     <link rel="stylesheet" href="css/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 

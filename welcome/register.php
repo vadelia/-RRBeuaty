@@ -1,36 +1,38 @@
 <?php
-// Membuat koneksi ke database
+// Koneksi ke database
 $servername = "localhost";
-$username = "root";  // Gantilah dengan username database Anda
-$password = "";      // Gantilah dengan password database Anda
-$dbname = "uas_web"; // Gantilah dengan nama database Anda
+$username = "root";  // Gantilah jika ada konfigurasi lain
+$password = "";      // Default XAMPP tidak memiliki password
+$dbname = "uas_web"; // Nama database yang digunakan
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Cek koneksi
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("Koneksi gagal: " . $conn->connect_error);
 }
 
-// Mengambil data yang dikirimkan melalui form
+// Mengambil data dari form
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = isset($_POST['username']) ? trim($_POST['username']) : '';
     $password = isset($_POST['password']) ? trim($_POST['password']) : '';
     $confirm_password = isset($_POST['confirm_password']) ? trim($_POST['confirm_password']) : '';
 
-    // Validasi apakah semua input telah diisi
+    // Validasi input
     if (empty($username) || empty($password) || empty($confirm_password)) {
         echo "<script>alert('Semua kolom wajib diisi!');</script>";
     } elseif ($password !== $confirm_password) {
-        // Validasi apakah password dan confirm password cocok
         echo "<script>alert('Password dan Confirm Password tidak cocok!');</script>";
     } else {
-        // Query untuk menyimpan data ke dalam database menggunakan prepared statement
-        $sql = "INSERT INTO register_page (user, password, confirm_password) VALUES (?, ?, ?)";
+        // Query SQL untuk menyimpan data
+        $sql = "INSERT INTO login_page (username, password, confirm_password) VALUES (?, ?, ?)";
         $stmt = $conn->prepare($sql);
 
         if ($stmt) {
+            // Bind parameter
             $stmt->bind_param("sss", $username, $password, $confirm_password);
+
+            // Eksekusi query
             if ($stmt->execute()) {
                 echo "<script>alert('Pendaftaran berhasil! Akun Anda telah terdaftar.');</script>";
             } else {
@@ -39,14 +41,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $stmt->close();
         } else {
-            echo "<script>alert('Terjadi kesalahan pada persiapan query.');</script>";
+            echo "<script>alert('Terjadi kesalahan pada query database.');</script>";
         }
     }
 }
 
 $conn->close();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +55,7 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <style>
-        /* Reset default styles */
+        /* CSS tetap sama seperti sebelumnya */
         * {
             margin: 0;
             padding: 0;
@@ -63,7 +64,7 @@ $conn->close();
 
         body {
             font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
+            background-color: #FFF0D1; 
             display: flex;
             justify-content: center;
             align-items: center;
@@ -72,7 +73,7 @@ $conn->close();
         }
 
         .container {
-            background-color: #ffffff;
+            background-color: #FFF0D1; 
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 30px;
             border-radius: 8px;
@@ -125,12 +126,6 @@ $conn->close();
             background-color: #2980b9;
         }
 
-        .error-message {
-            color: red;
-            text-align: center;
-            margin-top: 10px;
-        }
-
         .links {
             text-align: center;
             margin-top: 15px;
@@ -158,7 +153,6 @@ $conn->close();
     </style>
 </head>
 <body>
-
     <div class="container">
         <h2>Form Registrasi</h2>
 
@@ -176,9 +170,8 @@ $conn->close();
         </form>
 
         <div class="links">
-            <a href="#">Already have an account? Login</a>
+            <a href="login_page.php">Already have an account? Login</a>
         </div>
     </div>
-
 </body>
 </html>

@@ -1,13 +1,13 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #FFF0D1;
+    background: linear-gradient(135deg, #262626, #ffb398);
     margin: 0;
     padding: 0;
     color: #333;
 }
 
 header {
-    background-color: #654520;
+    background: #262626;
     padding: 20px;
     text-align: center;
     color: white;
@@ -34,7 +34,7 @@ header h1 {
 }
 
 .logout-button:hover {
-    background-color:#fc6855;
+    background-color:#ffb398;
     color: white; /* Ubah warna teks agar kontras saat hover */
 }
 
@@ -123,7 +123,7 @@ header h1 {
 footer {
     text-align: center;
     padding: 10px;
-    background-color: #654520;
+    background-color: #262626;
     color: #ffffff;
     position: fixed;
     bottom: 0;

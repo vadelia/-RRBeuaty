@@ -177,7 +177,7 @@ $result = $conn->query($sql);
         </table>
         <a href="addp.php" class="btn-add">Tambah Data</a>
         <!-- Tombol Keluar -->
-        <a href="logout.php" class="btn-add" style="background-color: #d32f2f; text-align: center;">Keluar</a>
+        <a href="dashboard.php" class="btn-add" style="background-color: #d32f2f; text-align: center;">Kembali</a>
     </div>
 </body>
 </html>
