@@ -186,7 +186,7 @@ $result = $conn->query($sql); // Eksekusi query
                         <td>
                             <div class="action-buttons">
                                 <!-- Form untuk edit -->
-                                <form style="display: inline;" action="edit.php" method="get">
+                                <form style="display: inline;" action="editp.php" method="get">
                                     <input type="hidden" name="no_pegawai" value="<?= $row['no_pegawai'] ?>">
                                     <button type="submit" class="btn btn-edit">Edit</button>
                                 </form>

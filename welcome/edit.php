@@ -1,16 +1,16 @@
 <?php
 $conn = new mysqli('localhost', 'root', '', 'uas_web');
 
-// Periksa koneksi
+// Periksa koneksi database
 if ($conn->connect_error) {
     die("Koneksi gagal: " . $conn->connect_error);
 }
 
-// Jika ada data yang diambil untuk pengeditan
+// Ambil data berdasarkan no_member untuk diedit
 if (isset($_GET['no_member'])) {
     $no_member = $conn->real_escape_string($_GET['no_member']);
     $result = $conn->query("SELECT * FROM members WHERE no_member = '$no_member'");
-    if ($result) {
+    if ($result->num_rows > 0) {
         $data = $result->fetch_assoc();
     } else {
         die("Data tidak ditemukan.");
@@ -18,28 +18,52 @@ if (isset($_GET['no_member'])) {
 }
 
 // Proses pembaruan data
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $old_no_member = $conn->real_escape_string($_POST['old_no_member']);
     $no_member = $conn->real_escape_string($_POST['no_member']);
     $nama = $conn->real_escape_string($_POST['nama']);
     $email = $conn->real_escape_string($_POST['email']);
     $phone = $conn->real_escape_string($_POST['phone']);
     $alamat = $conn->real_escape_string($_POST['alamat']);
+    $foto_lama = $_POST['foto_lama'];
 
+    // Proses upload foto jika ada
+    $foto_baru = $foto_lama;
+    if (isset($_FILES['foto']['name']) && $_FILES['foto']['name'] != '') {
+        $target_dir = "uploads/";
+        $foto_baru = $target_dir . basename($_FILES['foto']['name']);
+        $file_type = strtolower(pathinfo($foto_baru, PATHINFO_EXTENSION));
+
+        // Validasi tipe file foto
+        if (in_array($file_type, ['jpg', 'jpeg', 'png', 'gif'])) {
+            if (move_uploaded_file($_FILES['foto']['tmp_name'], $foto_baru)) {
+                if ($foto_lama && file_exists($foto_lama) && $foto_baru !== $foto_lama) {
+                    unlink($foto_lama); // Hapus foto lama jika ada
+                }
+            } else {
+                die("Gagal mengupload foto.");
+            }
+        } else {
+            die("Tipe file foto tidak valid. Hanya JPG, JPEG, PNG, atau GIF.");
+        }
+    }
+
+    // Query pembaruan data
     $sql = "UPDATE members 
-            SET no_member = '$no_member', nama = '$nama', email = '$email', phone = '$phone', alamat = '$alamat' 
+            SET no_member = '$no_member', nama = '$nama', email = '$email', phone = '$phone', alamat = '$alamat', foto = '$foto_baru'
             WHERE no_member = '$old_no_member'";
 
     if ($conn->query($sql) === TRUE) {
-        header("Location: datam.php");
+        header("Location: datam.php"); // Redirect setelah berhasil
         exit();
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        die("Error: " . $conn->error);
     }
 }
 
 $conn->close();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,47 +74,44 @@ $conn->close();
         body {
             font-family: Arial, sans-serif;
             background-color: #FFF0D1;
-            margin: 0;
-            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            margin: 0;
         }
 
         .container {
-            background-color: #fff;
+            background-color: white;
             padding: 20px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
         }
 
         h1 {
             text-align: center;
-            margin-bottom: 20px;
             color: #654520;
         }
 
-        label {
-            font-size: 14px;
-            margin-bottom: 8px;
+        form label {
             display: block;
-            color: #555;
+            margin-bottom: 8px;
+            font-size: 14px;
         }
 
-        input[type="text"], input[type="email"] {
+        form input[type="text"],
+        form input[type="email"],
+        form input[type="file"] {
             width: 100%;
             padding: 10px;
-            font-size: 16px;
+            margin-bottom: 15px;
             border: 1px solid #ddd;
             border-radius: 5px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
+            font-size: 16px;
         }
 
-        button {
+        form button {
             width: 100%;
             padding: 10px;
             background-color: #4CAF50;
@@ -101,47 +122,51 @@ $conn->close();
             font-size: 16px;
         }
 
-        button:hover {
+        form button:hover {
             background-color: #45a049;
         }
 
         a {
-            display: inline-block;
+            display: block;
             margin-top: 20px;
-            text-decoration: none;
-            color: #0A3981;
-            font-weight: bold;
             text-align: center;
+            color: #0A3981;
+            text-decoration: none;
         }
 
         a:hover {
-            color: #1F509A;
+            color: #0056b3;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Edit Data Member</h1>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             <input type="hidden" name="old_no_member" value="<?= htmlspecialchars($data['no_member']) ?>">
-            <label>No Member:</label>
-            <input type="text" name="no_member" value="<?= htmlspecialchars($data['no_member']) ?>" required>
+            <input type="hidden" name="foto_lama" value="<?= htmlspecialchars($data['foto']) ?>">
 
-            <label>Nama:</label>
-            <input type="text" name="nama" value="<?= htmlspecialchars($data['nama']) ?>" required>
+            <label for="no_member">No Member</label>
+            <input type="text" id="no_member" name="no_member" value="<?= htmlspecialchars($data['no_member']) ?>" required>
 
-            <label>Email:</label>
-            <input type="email" name="email" value="<?= htmlspecialchars($data['email']) ?>" required>
+            <label for="nama">Nama</label>
+            <input type="text" id="nama" name="nama" value="<?= htmlspecialchars($data['nama']) ?>" required>
 
-            <label>Phone:</label>
-            <input type="text" name="phone" value="<?= htmlspecialchars($data['phone']) ?>" required>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" value="<?= htmlspecialchars($data['email']) ?>" required>
 
-            <label>Alamat:</label>
-            <input type="text" name="alamat" value="<?= htmlspecialchars($data['alamat']) ?>" required>
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" name="phone" value="<?= htmlspecialchars($data['phone']) ?>" required>
+
+            <label for="alamat">Alamat</label>
+            <input type="text" id="alamat" name="alamat" value="<?= htmlspecialchars($data['alamat']) ?>" required>
+
+            <label for="foto">Foto</label>
+            <input type="file" id="foto" name="foto">
 
             <button type="submit">Simpan</button>
         </form>
-        <a href="data.php">Kembali ke Daftar</a>
+        <a href="datam.php">Kembali</a>
     </div>
 </body>
 </html>

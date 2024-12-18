@@ -1,138 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Metadata dasar untuk browser -->
-    <meta charset="UTF-8"> <!-- Mengatur encoding karakter -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Membuat tampilan responsif di perangkat berbeda -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Kompatibilitas dengan Internet Explorer -->
-    <title>RR BEAUTY</title> <!-- Judul halaman di tab browser -->
-    <link rel="icon" href="source/rr_logo.jpg" type="image/png"> <!-- Ikon kecil di tab browser (favicon) -->
-    
-    <!-- Menghubungkan file CSS eksternal -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>RR BEAUTY</title>
+    <link rel="icon" href="source/rr_logo.jpg" type="image/png">
     <link rel="stylesheet" href="css/home.css">
-
-    <!-- Menghubungkan font dari Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        .menu-item,
+        .description,
+        .image-container,
+        footer .footer-info {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* Efek saat hover pada menu-item */
+        .menu-item:hover,
+        .description:hover,
+        .image-container:hover,
+        footer .footer-info:hover {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .main-content .left-section,
+        .main-content .right-section,
+        #menu,
+        #menu2 {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .main-content .left-section.visible,
+        .main-content .right-section.visible,
+        #menu.visible,
+        #menu2.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Efek saat kursor berada di elemen */
+        .hover-visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Header bagian atas halaman -->
     <header>
-        <div class="container"> <!-- Kontainer utama untuk layout header -->
+        <div class="container">
             <div class="logo">
-                <img src="source/rr_logo2.png" alt="Logo"> <!-- Gambar logo salon -->
+                <img src="source/rr_logo2.png" alt="Logo">
             </div>
-            <!-- Navigasi utama halaman -->
             <nav class="header-nav">
-                <a href="#menu">Menu</a> <!-- Link menuju bagian menu -->
-                <a href="#menu2">About</a> <!-- Link menuju bagian about -->
-                <a href="detail_keccantikan/rambut.html">Rambut</a> <!-- Link menuju halaman detail rambut -->
-                <a href="detail_keccantikan/makeup.php">Makeup</a> <!-- Link menuju halaman detail makeup -->
-                <a href="detail_keccantikan/spa.html">Spa</a> <!-- Link menuju halaman detail spa -->
-                <a target="_blank" href="https://web.whatsapp.com/">Contact</a> <!-- Link menuju WhatsApp Web -->
+                <a href="#menu">Menu</a>
+                <a href="#menu2">About</a>
+                <a href="detail_keccantikan/rambut.html">Rambut</a>
+                <a href="detail_keccantikan/makeup.php">Makeup</a>
+                <a href="detail_keccantikan/spa.html">Spa</a>
+                <a target="_blank" href="https://web.whatsapp.com/">Contact</a>
             </nav>
-            <!-- Navigasi untuk login dan sign up -->
             <nav class="auth-nav">
-                <a href="login_page.php" class="login-btn">Login</a> <!-- Link ke halaman login -->
-                <a href="register.php" class="signup-btn">Sign Up</a> <!-- Link ke halaman registrasi -->
+                <a href="login_page.php" class="login-btn">Login</a>
+                <a href="register.php" class="signup-btn">Sign Up</a>
             </nav>
         </div>
     </header>
 
-    <!-- Bagian konten utama halaman -->
     <section class="main-content">
-        <!-- Gambar di sisi kiri -->
         <div class="left-section">
-            <img src="source/kecantikan1.jfif" alt="Left Image"> <!-- Gambar kecantikan -->
-        </div>
-        <!-- Gambar di sisi kanan -->
-        <div class="right-section">
-            <img src="source/produk1.jfif" alt="Product Image"> <!-- Gambar produk kecantikan -->
+            <img src="source/kecantikan1.jfif" alt="Left Image">
         </div>
         <div class="right-section">
-            <img src="source/spa1.jfif" alt="Product Image"> <!-- Gambar layanan spa -->
+            <img src="source/produk1.jfif" alt="Product Image">
+        </div>
+        <div class="right-section">
+            <img src="source/spa1.jfif" alt="Product Image">
         </div>
     </section>
 
-    <!-- Bagian Menu -->
     <div id="menu">
-        <h2>Salon Kecantikan RR Beauty</h2> <!-- Judul bagian menu -->
-        <p>Layanan Kecantikan Rambut, Wajah, & Tubuh</p> <!-- Deskripsi singkat layanan -->
-        <div class="container1"> <!-- Kontainer untuk daftar layanan -->
+        <h2>Salon Kecantikan RR Beauty</h2>
+        <p>Layanan Kecantikan Rambut, Wajah, & Tubuh</p>
+        <div class="container1">
             <div class="menu-item">
-                <img src="source/eyelash.jpg" alt="Eyelash"> <!-- Gambar Eyelash -->
-                <a href="detail_keccantikan/mode_rambut.html">Eyelash</a> <!-- Link menuju detail eyelash -->
+                <img src="source/eyelash.jpg" alt="Eyelash">
+                <a href="detail_keccantikan/mode_rambut.html">Eyelash</a>
             </div>
             <div class="menu-item">
-                <img src="source/spa2.jfif" alt="Spa"> <!-- Gambar Spa -->
-                <a href="detail_keccantikan/perawatan_spa.html">Spa</a> <!-- Link menuju detail spa -->
+                <img src="source/spa2.jfif" alt="Spa">
+                <a href="detail_keccantikan/perawatan_spa.html">Spa</a>
             </div>
             <div class="menu-item">
-                <img src="source/manicure.jpg" alt="Manicure"> <!-- Gambar Manicure -->
-                <a href="detail_keccantikan/model_menicure.html">Manicure</a> <!-- Link menuju detail manicure -->
+                <img src="source/manicure.jpg" alt="Manicure">
+                <a href="detail_keccantikan/model_menicure.html">Manicure</a>
             </div>
             <div class="menu-item">
-                <img src="source/model_rambut3.jpg" alt="Rambut"> <!-- Gambar Rambut -->
-                <a href="detail_keccantikan/mode_rambut.html">Rambut</a> <!-- Link menuju detail rambut -->
+                <img src="source/model_rambut3.jpg" alt="Rambut">
+                <a href="detail_keccantikan/mode_rambut.html">Rambut</a>
             </div>
             <div class="menu-item">
-                <img src="source/produk2.jfif" alt="produk"> <!-- Gambar Produk -->
-                <a href="detail_keccantikan/mode_rambut.html">Produk</a> <!-- Link menuju detail produk -->
+                <img src="source/produk2.jfif" alt="produk">
+                <a href="detail_keccantikan/mode_rambut.html">Produk</a>
             </div>
         </div>
     </div>
 
-    <!-- Bagian About -->
     <div id="menu2">
-        <!-- Deskripsi layanan RR Beauty -->
         <div class="description">
-            <h2><i>RR Beauty</i></h2> <!-- Judul -->
-            <p>
-                "RR Beauty adalah salon kecantikan yang menyediakan layanan profesional untuk rambut, 
-                makeup, serta perawatan kecantikan lainnya,
-                dengan tujuan memberikan tampilan terbaik dan memanjakan pelanggan dengan hasil yang memuaskan."
-            </p>
+            <h2><i>RR Beauty</i></h2>
+            <p>"RR Beauty adalah salon kecantikan yang menyediakan layanan profesional untuk rambut, makeup, serta perawatan kecantikan lainnya, dengan tujuan memberikan tampilan terbaik dan memanjakan pelanggan dengan hasil yang memuaskan."</p>
         </div>
-        <!-- Gambar ilustrasi di sebelah kanan -->
         <div class="image-container">
-            <img src="source/tekstur.jfif" alt="Contoh Gambar"> <!-- Gambar pendukung -->
+            <img src="source/tekstur.jfif" alt="Contoh Gambar">
         </div>
     </div>
-    
-    <!-- Footer bagian bawah -->
+
     <footer>
-        <div class="footer-container"> <!-- Kontainer utama footer -->
-            <!-- Bagian lokasi -->
+        <div class="footer-container">
             <div class="footer-info">
-                <h3>Lokasi</h3> <!-- Judul -->
-                <p>Jl. Veteran Selatan No. 10, Makassar, Indonesia</p> <!-- Alamat -->
-                <!-- Google Maps iframe -->
-                <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.5014193344565!2d119.42071971477875!3d-5.147665596259062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dbefd26ec4dbad9%3A0xc7c1d1be27d91cdd!2sJl.%20Veteran%20Sel.%20No.10%2C%20Mamajang%20Dalam%2C%20Kec.%20Mamajang%2C%20Kota%20Makassar%2C%20Sulawesi%20Selatan%2090125%2C%20Indonesia!5e0!3m2!1sen!2sid!4v1698422062348!5m2!1sen!2sid" 
-                width="300" 
-                height="200" 
-                style="border:0;" 
-                allowfullscreen="" 
-                loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade">
-            </iframe>
+                <h3>Lokasi</h3>
+                <p>Jl. Veteran Selatan No. 10, Makassar, Indonesia</p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18..."></iframe>
             </div>
-    
-            <!-- Bagian jam operasional -->
             <div class="footer-info">
-                <h3>Jam Operasional</h3> <!-- Judul -->
-                <p>Senin - Jumat: 09.00 - 18.00</p> <!-- Jadwal buka -->
+                <h3>Jam Operasional</h3>
+                <p>Senin - Jumat: 09.00 - 18.00</p>
                 <p>Sabtu - Minggu: 10.00 - 16.00</p>
             </div>
-    
-            <!-- Bagian kontak -->
             <div class="footer-info">
-                <h3>Kontak Kami</h3> <!-- Judul -->
-                <p>Telepon: +62 812 3456 7890</p> <!-- Nomor telepon -->
-                <p>Email: info@rrbeauty.com</p> <!-- Email kontak -->
+                <h3>Kontak Kami</h3>
+                <p>Telepon: +62 812 3456 7890</p>
+                <p>Email: info@rrbeauty.com</p>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Function to check if the element is in the viewport
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return (rect.top <= window.innerHeight && rect.bottom >= 0);
+        }
+
+        // Function to add 'visible' class when element is in viewport
+        function handleScrollAnimation() {
+            const elements = document.querySelectorAll('.left-section, .right-section, #menu, #menu2');
+            
+            elements.forEach(function (el) {
+                if (isElementInViewport(el)) {
+                    el.classList.add('visible'); // Menambahkan kelas 'visible'
+                }
+            });
+        }
+
+        // Function to trigger hover effect when mouse enters the page area
+        function handleMouseEnter() {
+            const elements = document.querySelectorAll('.menu-item, .description, .image-container, footer .footer-info');
+            elements.forEach(function (el) {
+                el.classList.add('hover-visible');
+            });
+        }
+
+        // Detect mouse enter on the body
+        document.body.addEventListener('mouseenter', handleMouseEnter);
+
+        // Jalankan fungsi saat halaman di-scroll
+        window.addEventListener('scroll', handleScrollAnimation);
+
+        // Jalankan sekali saat halaman dimuat untuk mengecek elemen yang sudah terlihat
+        document.addEventListener('DOMContentLoaded', handleScrollAnimation);
+    </script>
 
 </body>
 </html>

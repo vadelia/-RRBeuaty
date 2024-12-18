@@ -84,6 +84,14 @@ $result = $conn->query($sql); // Eksekusi query
         transition: background-color 0.3s ease; /* Transisi halus */
     }
 
+    /* Gambar dalam tabel */
+    .member-photo {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
     /* Tombol aksi */
     .action-buttons {
         display: flex;
@@ -179,6 +187,7 @@ $result = $conn->query($sql); // Eksekusi query
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Alamat</th>
+                <th>Foto</th>
                 <th>Aksi</th>
             </tr>
             <!-- Jika ada data, tampilkan baris tabel -->
@@ -190,6 +199,13 @@ $result = $conn->query($sql); // Eksekusi query
                         <td><?= $row['email'] ?></td>
                         <td><?= $row['phone'] ?></td>
                         <td><?= $row['alamat'] ?></td>
+                        <td>
+                            <?php if ($row['foto']): ?>
+                                <img src="uploads/<?= $row['foto'] ?>" alt="Foto <?= $row['nama'] ?>" class="member-photo">
+                            <?php else: ?>
+                                Tidak ada foto
+                            <?php endif; ?>
+                        </td>
                         <td>
                             <div class="action-buttons">
                                 <!-- Tombol edit -->
@@ -209,7 +225,7 @@ $result = $conn->query($sql); // Eksekusi query
             <?php else: ?>
                 <!-- Tampilkan pesan jika tidak ada data -->
                 <tr>
-                    <td colspan="6" style="text-align: center;">Tidak ada data.</td>
+                    <td colspan="7" style="text-align: center;">Tidak ada data.</td>
                 </tr>
             <?php endif; ?>
         </table>

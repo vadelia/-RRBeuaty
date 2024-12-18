@@ -118,29 +118,28 @@ header {
 }
 
 .menu-item {
-    display: flex; /* Ubah ini dari inline-block ke flex */
-    flex-direction: column; /* Mengatur gambar dan teks secara vertikal */
-    align-items: center; /* Pusatkan konten di dalam menu item */
-    margin: 100px; /* Margin antar item */
-    max-width: 100px; /* Atur lebar item menu */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 120px; /* Tambahkan margin untuk memberi jarak antar item */
+    max-width: 100px;
     max-height: auto; 
-    border-radius: 10px; /* Sudut membulat */
-    padding: 5px; /* Padding di dalam item */
-    position: relative; /* Agar teks berada di atas gambar */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Tambahkan transisi halus */
-    margin: 50px, 100px;
-    
+    border-radius: 10px;
+    padding: 5px;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .menu-item img {
-    width: 200px; /* Tetapkan lebar yang konsisten */
-    height: 300px; /* Tetapkan tinggi yang konsisten */
-    border-radius: 8px; 
-    object-fit: cover; /* Memastikan gambar tetap dalam proporsi dan mengisi kontainer */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Tambahkan transisi untuk gambar */
+    width: 200px;
+    height: 300px;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
-    margin: 10px, 20px;
+    margin-bottom: 10px; /* Jarak antara gambar dan teks */
 }
+
 
 .menu-item:hover {
     transform: perspective(1000px) rotateX(10deg) rotateY(10deg); /* Efek rotasi 3D */

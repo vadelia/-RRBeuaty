@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SALON RR BEUATY</title>
+    <title>SALON RR BEAUTY</title>
     <!-- Tambahkan Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <style>
@@ -22,6 +22,7 @@ body {
     line-height: 1.6;
     background-attachment: fixed; /* Agar background tetap saat di-scroll */
 }
+
 /* Header & Navbar */
 header {
     background: linear-gradient(135deg, #262626, #ffb398);
@@ -38,6 +39,7 @@ header {
     color: #ffb398;
 }
 
+/* Navbar Styling */
 nav ul {
     list-style: none;
     display: flex;
@@ -74,10 +76,12 @@ nav ul li a:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap; /* Membuat layout fleksibel */
 }
 
 .hero .text {
     width: 50%;
+    padding-right: 20px;
 }
 
 .hero h1 {
@@ -114,11 +118,10 @@ nav ul li a:hover {
 .hero .image img {
     width: 100%;
     border-radius: 10px;
+    max-width: 400px; /* Membatasi ukuran gambar agar tidak terlalu besar */
 }
 
-
-
-
+/* Tagline */
 .tagline {
     font-size: 1.8em;
     color: #ffb398;
@@ -126,7 +129,6 @@ nav ul li a:hover {
 }
 
 /* Footer */
-/* Background Gradient untuk Footer */
 footer {
     background: linear-gradient(135deg, #262626, #ffb398); /* Gradient terbalik di Footer */
     text-align: center;
@@ -134,31 +136,85 @@ footer {
     font-size: 0.9em;
     color: #f5f5f5;
 }
+
 footer a {
     text-decoration: none;
     color: #262626;
     font-weight: bold;
 }
-</style>
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column; /* Mengubah layout menjadi kolom pada perangkat kecil */
+        padding: 20px;
+    }
+
+    .hero .text {
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 2.5em;
+    }
+
+    .hero p {
+        font-size: 1.1em;
+    }
+
+    .get-btn {
+        padding: 8px 16px;
+        font-size: 1em;
+    }
+
+    .hero .image img {
+        max-width: 90%;
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 10px 20px;
+    }
+
+    .logo {
+        font-size: 1.5em;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+
+    .get-btn {
+        padding: 6px 14px;
+    }
+}
+
+    </style>
 </head>
 <body>
     <header>
         <div class="navbar">
             <div class="logo">RR BEAUTY</div>
-                </div>
+        </div>
     </header>
 
     <main>
         <div class="hero">
             <div class="text">
                 <h1><span>*</span> Blessing for every skin</h1>
-                <p>Your miracle care for perfect skin</p>
+                <p>Manjakan Dirimu dengan Perawatan untuk Kulit Sempurna</p>
                 <a href="home_page.php" class="get-btn">GET YOURS</a>
             </div>
             <div class="image">
                 <img src="source/look_makeup2.png" alt="Skin Care Model">
             </div>
-        </div>
         </div>
     </main>
 

@@ -31,12 +31,6 @@ if ($_SESSION['role'] !== 'User') {
     header("Location: admin_dashboard.php");
     exit();
 }
-
-// Path gambar profil
-$profile_image = "source/profil2.jpg";
-if (isset($_SESSION['profile_image']) && file_exists($_SESSION['profile_image'])) {
-    $profile_image = $_SESSION['profile_image'];
-}
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +48,7 @@ if (isset($_SESSION['profile_image']) && file_exists($_SESSION['profile_image'])
             padding: 0;
         }
         .container {
-            width: 80%;
+            width: 90%;
             margin: 20px auto;
             background-color: #fff;
             padding: 20px;
@@ -67,39 +61,19 @@ if (isset($_SESSION['profile_image']) && file_exists($_SESSION['profile_image'])
             font-size: 24px;
             margin-bottom: 20px;
         }
-        .user-info {
-            background-color: #f1f1f1;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            display: inline-block;
-            text-align: left;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
         }
-        .user-info p {
-            margin: 5px 0;
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
         }
-        .profile-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #e17055;
-            margin-bottom: 15px;
-        }
-        .menu {
-            list-style: none;
-            padding: 0;
-        }
-        .menu li {
+        table th {
             background-color: #e17055;
             color: white;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 5px;
-        }
-        .menu li a {
-            color: white;
-            text-decoration: none;
         }
         .logout-btn {
             background-color: #e17055;
@@ -120,22 +94,42 @@ if (isset($_SESSION['profile_image']) && file_exists($_SESSION['profile_image'])
 <body>
 
 <div class="container">
-    <h2>Welcome to User Dashboard, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
-    <img src="<?php echo $profile_image; ?>" alt="Profile Image" class="profile-image">
+    <h2>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h2>
 
-    <div class="user-info">
-        <p><strong>Username:</strong> <?php echo htmlspecialchars($_SESSION['username']); ?></p>
-        <p><strong>Role:</strong> <?php echo htmlspecialchars($_SESSION['role']); ?></p>
-    </div>
+    <h3>Order History</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Order ID</th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dummy data, ganti dengan data dari database -->
+            <tr>
+                <td>1</td>
+                <td>ORD12345</td>
+                <td>Product A</td>
+                <td>2</td>
+                <td>$40</td>
+                <td>2024-12-01</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>ORD67890</td>
+                <td>Product B</td>
+                <td>1</td>
+                <td>$20</td>
+                <td>2024-12-05</td>
+            </tr>
+            <!-- Tambahkan data lain -->
+        </tbody>
+    </table>
 
-    <h3>Menu:</h3>
-    <ul class="menu">
-        <li><a href="profile.php">View Profile</a></li>
-        <li><a href="order.php">Order History</a></li>
-        <li><a href="settings.php">Account Settings</a></li>
-    </ul>
-
-    <!-- Peringatan sesi -->
     <p class="session-warning">
         Sesi Anda akan berakhir pada <span id="session-timer">05:00</span> minutes.
     </p>
