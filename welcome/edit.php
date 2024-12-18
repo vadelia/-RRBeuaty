@@ -73,7 +73,7 @@ $conn->close();
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #FFF0D1;
+            background: linear-gradient(135deg, #262626, #ffb398); /* Warna gradasi */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -91,7 +91,7 @@ $conn->close();
 
         h1 {
             text-align: center;
-            color: #654520;
+            color: #262626;
         }
 
         form label {

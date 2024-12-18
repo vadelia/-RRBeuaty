@@ -1,17 +1,3 @@
-<?php
-// Koneksi ke database
-$conn = new mysqli('localhost', 'root', '', 'uas_web');
-
-// Periksa koneksi ke database
-if ($conn->connect_error) {
-    die("Koneksi gagal: " . $conn->connect_error); // Jika koneksi gagal, tampilkan pesan error
-}
-
-// Ambil semua data pegawai dari tabel 'pegawai'
-$sql = "SELECT * FROM pegawai";
-$result = $conn->query($sql); // Eksekusi query
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +5,7 @@ $result = $conn->query($sql); // Eksekusi query
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Pegawai</title>
     <style>
-    /* Gaya dasar untuk body */
+        /* Gaya dasar untuk body */
     body {
         font-family: Arial, sans-serif;
         background: linear-gradient(135deg, #262626, #ffb398); /* Warna gradasi */
@@ -163,7 +149,7 @@ $result = $conn->query($sql); // Eksekusi query
             opacity: 1;
         }
     }
-</style>
+    </style>
 </head>
 <body>
     <h1>Data Pegawai</h1>
@@ -174,15 +160,24 @@ $result = $conn->query($sql); // Eksekusi query
                 <th>Nama</th>
                 <th>Phone</th>
                 <th>Alamat</th>
+                <th>Gambar</th> <!-- Kolom baru untuk menampilkan gambar -->
                 <th>Aksi</th>
             </tr>
             <?php if ($result->num_rows > 0): // Periksa apakah ada data ?>
                 <?php while ($row = $result->fetch_assoc()): // Looping data pegawai ?>
                     <tr>
                         <td><?= $row['no_pegawai'] ?></td>
-                        <td><?= $row['nama_pegawai'] ?></td>
-                        <td><?= $row['phone'] ?></td>
-                        <td><?= $row['alamat'] ?></td>
+                        <td><?= htmlspecialchars($row['nama_pegawai']) ?></td>
+                        <td><?= htmlspecialchars($row['phone']) ?></td>
+                        <td><?= htmlspecialchars($row['alamat']) ?></td>
+                        <td>
+                            <!-- Tampilkan gambar jika ada -->
+                            <?php if (!empty($row['foto'])): ?>
+                                <img src="uploads/<?= htmlspecialchars($row['foto']) ?>" alt="Foto Pegawai" style="width: 80px; height: auto; border-radius: 5px;">
+                            <?php else: ?>
+                                <span>Tidak ada gambar</span>
+                            <?php endif; ?>
+                        </td>
                         <td>
                             <div class="action-buttons">
                                 <!-- Form untuk edit -->

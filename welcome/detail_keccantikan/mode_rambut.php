@@ -9,7 +9,7 @@
 <body>
     <header>
         <h1> Hair Modeling</h1>
-        <a href="../home_page.html">Home</a>
+        <a href="../home_page.php">Home</a>
     </header>
 
     <div class="container">

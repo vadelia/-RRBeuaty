@@ -115,7 +115,7 @@ if ($_SESSION['role'] !== 'User') {
                 <td>ORD12345</td>
                 <td>Product A</td>
                 <td>2</td>
-                <td>$40</td>
+                <td>Rp.40.000</td>
                 <td>2024-12-01</td>
             </tr>
             <tr>
@@ -123,7 +123,7 @@ if ($_SESSION['role'] !== 'User') {
                 <td>ORD67890</td>
                 <td>Product B</td>
                 <td>1</td>
-                <td>$20</td>
+                <td>Rp.20.000</td>
                 <td>2024-12-05</td>
             </tr>
             <!-- Tambahkan data lain -->
